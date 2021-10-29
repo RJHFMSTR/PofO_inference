@@ -1,4 +1,4 @@
-Parent-of-origin inference from surrogate parents
+Parent-of-origin inference from close relatives
 
 
 
@@ -17,6 +17,9 @@ $ bin/pooer -I examples/1000G.chr20.related.vcf.gz -H examples/1000G.chr20.unrel
 -M : genetic map
 
 -G : group file
+	- col1= target sample
+	- col2= first group of relatives
+	- col3= second group of relatives, if any
 
 -R : region
 
