@@ -5,7 +5,7 @@ Parent-of-origin inference from close relatives
 
 Usage:
 
-$ bin/pooer -I examples/1000G.chr20.related.vcf.gz -H examples/1000G.chr20.unrelated.vcf.gz -M maps/chr20.b37.gmap.gz -G examples/group_file.txt -R 20 -O examples/output_test.prob.gz
+		$ bin/pooer -I examples/1000G.chr20.related.vcf.gz -H examples/1000G.chr20.unrelated.vcf.gz -M maps/chr20.b37.gmap.gz -G examples/group_file.txt -R 20 -O examples/output_test.prob.gz
 
 
 
@@ -16,13 +16,7 @@ $ bin/pooer -I examples/1000G.chr20.related.vcf.gz -H examples/1000G.chr20.unrel
 
 -M : genetic map
 
--G : group file
-
-	- col1= target sample
-
-	- col2= first group of relatives
-
-	- col3= second group of relatives, if any
+-G : group file (col1= target sample; col2= first group of relatives; col3= second group of relatives, if any)
 
 -R : region
 
