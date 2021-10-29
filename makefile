@@ -1,6 +1,10 @@
 #COMPILER MODE C++11
 CXX=g++ -std=c++11
 
+
+### Speficy your own path for HTSLIB and BOOST
+
+
 #HTSLIB LIBRARY [SPECIFY YOUR OWN PATHS]
 #HTSLIB_INC=$(HOME)/Tools/htslib-1.9
 #HTSLIB_LIB=$(HOME)/Tools/htslib-1.9/libhts.a
