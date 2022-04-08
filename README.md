@@ -1,14 +1,19 @@
 # Parent-of-Origin inference for biobanks
 
 
+
+
 This pipeline has been used to infer the Parent-of-Origin (PofO) of the UK Biobank individuals.
 
-If you use (parts) of this code, please cite Hofmeister et al., bioRxiv 2021 (https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
+If you use (parts) of this code, please cite [Hofmeister et al., bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
 
-All the summary statistics are available via our [PofO Catalog](https://www.tinyurl.com/PofOCat). If you use these summary statistics, please cite Hofmeister et al., bioRxiv 2021 (https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
+All the summary statistics are available via our [PofO Catalog](https://www.tinyurl.com/PofOCat). If you use these summary statistics, please cite [Hofmeister et al., bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1
 
 
 For the purpose of the example, parts of this pipeline have been adapted to be run on the 1000GP chromosome 20. The resuts of this example are not usable, these are only to give an example of the input and output files. 
+
+
+
 
 
 
@@ -16,12 +21,16 @@ For the purpose of the example, parts of this pipeline have been adapted to be r
 
 This step is optional as the relatedness file used for the original manuscript was available as part of the UK Biobank data.
 
-Starting from the example variant call file (VCF, step1_compute_relatedness/1000GP.chr20.MAF5.vcf.gz ), this step can be run with the following command:
+Starting from the example variant call file (VCF, ```step1_compute_relatedness/1000GP.chr20.MAF5.vcf.gz```), this step can be run with the following command:
 	
-```bash
+```
 cd step1_compute_relatedness/
 bash step0_relatedness.sh
 ```
+
+
+
+
 
 ### Step 2: Duos/Trios identification & surrogate parents group inference
 
@@ -41,6 +50,11 @@ bash step0_run_grouping.sh
 IGRAPH software and documentation can be found here: https://igraph.org/
 
 
+
+
+
+
+
 ### Step 3: Groups assignments
  
 We assigned parental status (i.e. mother or father) to groups of close relatives by examining shared IBD segments on chromosome X using XIBD, a software specifically designed to map IBD on chromosome X. This assignment was only possible for males as they inherit their only chromosome X copy from their mother: a close relative sharing IBD on chromosome X with the target is expected to be from the maternal side of the family.
@@ -51,6 +65,13 @@ The scripts used for this analysis can be found here ```step3_xIBD/step0_run_xIB
 
 
 XIBD software and documentation can be found here: https://github.com/bahlolab/XIBD
+
+
+
+
+
+
+
 
 ### Step 4: Pofo inference
 
@@ -69,6 +90,13 @@ bash step1_scaffold.sh
 ```
 
 
+
+
+
+
+
+
+
 ### Step 5: Extrapolation by phasing
 
 We use the scaffold previously built to rephase the data using SHAPEIT4. The goal of this second round of phasing is : (i) to ensure that the pool of alleles coming from the same parent land onto the same haplotype, (ii) to propagate the PofO assignment from IBD tracks to all alleles along the chromosomes and (ii) to correct long range switch errors. Point (ii) is made possible as all alleles with PofO unknown (i.e. not in IBD tracks) are phased relatively to the haplotype scaffold so that we can extrapolate their PofO from the scaffold they co-localize with (paternal/maternal).
@@ -83,6 +111,13 @@ bash step1_phasing_confidence.sh
 ```
 
 SHAPEIT4 software and documentation can be found here: https://odelaneau.github.io/shapeit4/
+
+
+
+
+
+
+
 
 
 ### Step 6: Extrapolation by imputation
