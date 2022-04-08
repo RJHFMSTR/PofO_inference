@@ -7,7 +7,7 @@ This pipeline has been used to infer the Parent-of-Origin (PofO) of the UK Bioba
 
 If you use (parts) of this code, please cite [Hofmeister et al., bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
 
-All the summary statistics are available via our [PofO Catalog](https://www.tinyurl.com/PofOCat). If you use these summary statistics, please cite [Hofmeister et al., bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1
+All the summary statistics are available via our [PofO Catalog](https://www.tinyurl.com/PofOCat). If you use these summary statistics, please cite [Hofmeister et al., bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
 
 
 For the purpose of the example, parts of this pipeline have been adapted to be run on the 1000GP chromosome 20. The resuts of this example are not usable, these are only to give an example of the input and output files. 
@@ -28,7 +28,10 @@ cd step1_compute_relatedness/
 bash step0_relatedness.sh
 ```
 
-
+#
+#
+#
+#
 
 
 
