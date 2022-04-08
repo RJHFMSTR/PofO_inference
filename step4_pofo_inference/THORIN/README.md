@@ -52,6 +52,8 @@ The group file (```-G```) is formatted as follows:
 * the second column specifies the first group of relatives. It starts with ```G1=```, referring to ```Group 1```, followed by a ';'-separated list of relatives.
 * the third column, if any, specifies the second group of relatives with ```G2=```.
 
+</br>
+  &nbsp
 
 The output file stores the copying probability of each group of relatives (```G1``` and ```G2``` if any) as well as the copying probability of unrelated individuals (```H```). It is formated as follows:
 * columns 1-4 specifies the chromosome, position, index of the variant and centimorgan.
@@ -65,7 +67,7 @@ The output file stores the copying probability of each group of relatives (```G1
 </br>
   &nbsp
 #
-### Installation
+## Installation
 
 A static version of THORIN ready to run is provided in ```./bin/thorin_static```
 
