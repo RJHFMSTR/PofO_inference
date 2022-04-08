@@ -173,3 +173,20 @@ IMPUTE5 software and documentation can be found here : https://jmarchini.org/sof
   &nbsp
 
 
+
+
+
+Software versions used in the original manuscript:
+
+* BCFtools v1.8
+* SHAPEIT v4.2.1
+* BOLT-LMM v2.3.4
+* PINK v1.90b5
+* R v3.5.1
+* R IGRAPH v1.2.2
+* IMPUTE5 v1.1.4
+
+
+
+
+
