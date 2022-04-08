@@ -19,7 +19,7 @@ To run an example, use the following command line:
 
 Options:
 
-	```--help``` outputs the list of possible options.
+	`--help` outputs the list of possible options.
 	```-I``` specifies the input .vcf file with all samples listed in the group file (-G).
 	```-H``` specifies the input .vcf file with a set of fully unrelated samples.
 	```-G``` specifies the group file.
@@ -27,7 +27,7 @@ Options:
 	```-O``` specifies the output file
 
 
-==The== group file (```-G```) is formatted as follows:
+The group file (```-G```) is formatted as follows:
 * the first column specifies the target individual id
 * the second column specifies the first group of relatives. It starts with ```G1=```, referring to ```Group 1```, followed by a ';'-separated list of relatives.
 * the third column, if any, specifies the second group of relatives with ```G2=```.
