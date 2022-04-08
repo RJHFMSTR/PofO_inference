@@ -14,7 +14,7 @@ For the purpose of the example, parts of this pipeline have been adapted to be r
 
 
 #
-#
+
 
 
 
@@ -41,7 +41,7 @@ For the purpose of the example, parts of this pipeline have been adapted to be r
 
 
 
-#
+
 #
 ### Step 1: If not provided, compute the relatedness using the KING software.
 
@@ -65,7 +65,7 @@ KING software and documentation can be found here: https://www.kingrelatedness.c
   &nbsp
 
 
-#
+
 #
 ### Step 2: Duos/Trios identification & surrogate parents group inference
 
@@ -95,7 +95,7 @@ IGRAPH software and documentation can be found here: https://igraph.org/
   &nbsp
 
 
-#
+
 #
 ### Step 3: Groups assignments
 
@@ -120,7 +120,7 @@ XIBD software and documentation can be found here: https://github.com/bahlolab/X
   &nbsp
 
 
-#
+
 #
 ### Step 4: Pofo inference
 
@@ -151,7 +151,7 @@ bash step1_scaffold.sh
   &nbsp
 
 
-#
+
 #
 ### Step 5: Extrapolation by phasing
 
@@ -181,7 +181,7 @@ SHAPEIT4 software and documentation can be found here: https://odelaneau.github.
   &nbsp
 
 
-#
+
 #
 ### Step 6: Extrapolation by imputation
 
@@ -189,6 +189,9 @@ We inferred PofO for untyped alleles, i.e. not included on the SNP array. To do 
 
 IMPUTE5 software and documentation can be found here : https://jmarchini.org/software/#impute-5 
 
-
+</br>
+  &nbsp
+  </br>
+  &nbsp
 
 
