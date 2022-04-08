@@ -1,0 +1,332 @@
+---
+title: "XIBD Introduction"
+author: "Lyndal Henden"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{XIBD Introduction}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+XIBD performs pairwise relatedness mapping on autosomes and the X chromosome using a first order continuous time hidden Markov model (HMM).
+First, XIBD estimates the proportion of genome shared identical by descent (IBD) between pairs of samples, which is useful as an initial measure of relatedness.
+Following this, XIBD can be used to detect genomic regions have been inherited IBD.
+
+The user can select one of two HMMs to implement:
+
+1. `model=1` is based on the HMM implemented in PLINK (Purcell et al., 2007) which assumes the SNPs are in linkage equilibrium (LE).
+This often requires thinning of SNPs prior to use. 
+
+2. `model=2` is based on the HMM implemented in RELATE (Albrechtsen et al., 2009) which allows SNPs to be in LD and implicitly accounts 
+for some (not all) LD through conditional emission probabilities.
+
+Of these HMMs, `model=1` has a faster run-time than `model=2` and is wise to use when then are many SNPs and many samples.
+
+This document outlines the data format and key functions used by XIBD for relatedness mapping.
+For more details on the algorithm, see:
+
+Henden et al. (2016) XIBD: software for inferring pairwise identity by descent on the X chromosome. *Bioinformatics.*
+
+**NOTE: XIBD should not be used with small reference datasets; reference populations that do not match the input population or cohorts of mixed populations.**
+
+
+## Data Format
+
+
+### PED and MAP Files
+
+
+The input for XIBD is unphased haplotype data for SNPs in PLINK PED and MAP format (http://www.cog-genomics.org/plink2).
+
+A PED file is a white-space (space or tab) delimited file with the first six columns
+
+1. Family ID
+2. Individual ID
+3. Paternal ID
+4. Maternal ID
+5. Sex (1=male, 2=female)
+6. Phenotype (1=unaffected, 2=affected, 0=unknown)
+
+The IDs are alphanumeric: the combination of family and individual ID should uniquely identify a person.
+Genotypes (column 7 onwards) should also be white-space delimited with the A and B alleles coded as 1 and 2 respectively and missing genotypes coded as 0. 
+All SNPs (whether haploid or not) must have two alleles specified. 
+For haploid chromosomes (X chromosome), genotypes should be specified as homozygous. 
+Either Both alleles should be missing (i.e. 0) or neither. No header row should be given
+
+The MAP file contains exactly 4 columns of information
+
+1. Chromosome (1-23, where chromosome 23 is the X chromosome)
+2. rs# or SNP identifier
+3. Genetic map distance (centi-Morgans or Morgans)
+4. Base-pair position
+
+where each row describes a single marker. 
+Genetic map distances and base-pair positions are expected to be positive values. 
+The MAP file must be ordered by increasing chromosomes and positions. 
+SNP identifiers can contain any characters except spaces or tabs; also, you should avoid * symbols in names. 
+The MAP file must contain as many markers as are in the PED file. No header row should be given.
+
+
+### LD File
+
+
+If `model=2` then a PLINK LD file is also required, see http://www.cog-genomics.org/plink2 for more details about this 
+file and instructions on how to generate it.
+The LD file contains linkage disequilibrium information for pairs of SNPs and has 7 columns
+
+1. Chromosome of SNP A
+2. Base-pair position of SNP A
+3. rs# or SNP identifier of SNP A
+4. Chromosome of SNP B
+5. Base-pair position of SNP B
+6. rs# or SNP identifier of SNP A
+7. Squared correlation between SNP A and SNP B
+
+where each row describes a the correlation between a single pair of SNPs. 
+
+
+### Reference Data
+
+
+XIBD calculates population allele frequencies and haplotype frequencies (`model=2` only) from either the input dataset or a reference dataset. 
+HapMap phase 2 and 3 PED, MAP and LD reference data (hg19/build 37) for the 11 HapMap populations can be downloaded from http://bioinf.wehi.edu.au/software/XIBD/.
+These files are in `.rds` format and can be loaded into R using `readRDS`.
+
+**NOTE: XIBD should not be used with small reference datasets; reference populations that do not match the input population or cohorts of mixed populations.**
+
+HapMap Annotation | Population Description
+----------------- | -----------------------------
+ASW | African ancestry on Southwest USA
+CEU | Utah residents with Northern and Western European ancestry from the CEPH collection
+CHB | Han Chinese in Beijing, China
+CHD | Chinese in Metropolitan Denver, Colorado
+GIH | Gujarati Indians in Houston, Texas
+JPT | Japanese in Tokyo, Japan
+LWK | Luhya in Webuye, Kenya
+MEX | Mexican ancestry in Los Angeles, California
+MKK | Maasai in Kinyawa, Kenya
+TSI | Toscans in Italy
+YRI | Yoruba in Ibadan, Nigeria (West Africa)
+
+
+## Key Functions
+
+Function | Description
+------------------ | --------------------------------------------------
+calculateAlleleFreq | calculate population allele frequencies
+getGenotypes | get genotypes from haplotype data and perform data filtering
+getIBDparameters | estimate IBD parameters between pairs
+getIBDsegments | detect IBD segments between pairs
+getIdentityCoef |  calculate identity coefficients from a pedigree
+getLocusMatrix | create a binary matrix of IBD/non-IBD for each SNP and pair
+getLocusProportions | calculate the proportion of pairs IBD at each SNP
+plotIBDproportions | plot the proportion of pairs IBD across the genome
+plotIBDsegments | plot the detected IBD segments across the genome
+switchBOTgenotypes | switch A and B alleles for Illumina SNPs named using the TOPBOT method
+
+## Example
+
+Below is an IBD analysis performed on simulated data to demonstrate the steps involved in XIBD. Change the parameters for each function to see how it affects the results.
+
+**NOTE: R has a memory limit and if you try to exceed that limit, the error message begins `cannot allocate vector of length`. The number of bytes in a character string is limited to 2^31 - 1 ~ 2*10^9, which is also the limit on each dimension of an array.**
+
+### Format and Filter PED/MAP 
+
+We begin by formatting and filtering input PED and MAP haplotype.
+
+```{r}
+
+# load XIBD library
+library(XIBD)
+
+# lets look at the data
+str(example_pedmap)
+
+# format and filter the example data
+my_genotypes <- getGenotypes(ped.map = example_pedmap,
+                             reference.ped.map = example_reference_pedmap,
+                             snp.ld = example_reference_ld,
+                             model = 2,
+                             maf = 0.01,
+                             sample.max.missing = 0.1,
+                             snp.max.missing = 0.1,
+                             maximum.ld.r2 = 0.99,
+                             chromosomes = NULL,
+                             input.map.distance = "M",
+                             reference.map.distance = "M")
+
+str(my_genotypes)
+
+```
+
+
+### Switch A and B Alleles
+
+
+If the input data has been generated from an Illumina platform **and** HapMap reference data is being used then it is a good
+idea to check that the A and B alleles as denoted by Illumina match the A and B alleles in the HapMap data.
+
+The HapMap allele frequencies in XIBDs HapMap allele frequency files are calculated for the A allele only,
+where the A allele is determined by the following rules:
+
+1. When one of the possible variations of the SNP is adenine (A), then adenine is labeled the A allele and the remaining variation is 
+labeled the B allele, regardless of what this might be.
+2. If adenine (A) is not a variation of the SNP but cytosine (C) is, then cytosine is labeled the A allele and the remaining variation 
+is labeled the B allele.
+3. If neither adenine (A) or cytosine (C) are variants of the SNP then thymine (T) is labeled the A allele.
+
+Illuminas convention for the naming of A and B alleles differs to that of the HapMap data
+(http://www.illumina.com/documents/products/technotes/technote_topbot.pdf). 
+Rather, the classification of A and B alleles depend on the top (TOP) and bottom (BOT) designations of the SNP. 
+This means that the A allele in the HapMap data is not always the same as the A allele in the Illumina data. 
+In fact, alleles that have been named according to the BOT designation actually correspond to the B allele in the HapMap data. 
+This discrepancy will result in population allele frequencies that differ considerably between the input dataset and the
+reference dataset, which will produce an unreliable analysis.
+
+To correct for this, `switchBOTgenotypes()` switches the A and B alleles in the filtered dataset for all SNPs corresponding to 
+Illumina BOT designations. 
+This mean a homozygous reference genotype, 0, will be changed to a homozygous alternative genotype, 2, and vis versa. 
+Heterozygous genotypes remain unchanged.
+
+We have created an annotation file containing information on the TOP/BOT designations for each SNP in the HapMap data that can be downloaded from http://bioinf.wehi.edu.au/software/XIBD/. This file is required if you need to correct for the TOP/BOT naming convention.
+
+For the purpose of this example, we simulated data using Illumina's naming convention.
+
+**NOTE: this function should only be implemented with Illumina data when HapMap reference data is used
+and if there is a noticeable discrepancy between population allele frequencies calculated from the HapMap reference data
+and those calculated from the input dataset.**
+
+```{r, fig.show='hold'}
+
+# calculate allele frequencies from the input dataset
+input_freq <- calculateAlleleFreq(ped.genotypes = my_genotypes)
+hist(abs(my_genotypes[["genotypes"]][,"freq"] - input_freq[,"freq"]),
+     xlim = c(0,1), 
+     main = "Before BOT change",
+     xlab = "abs(pop allele freq diff)")
+
+# switch alleles
+my_genotypes_2 <- switchBOTgenotypes(ped.genotypes = my_genotypes, 
+                                     hapmap.topbot = example_hapmap_topbot)
+
+# calculate allele frequencies when BOT alleles switched
+input_freq <- calculateAlleleFreq(ped.genotypes = my_genotypes_2)
+hist(abs(my_genotypes_2[["genotypes"]][,"freq"] - input_freq[,"freq"]),
+     xlim = c(0,1),
+     main = "After BOT change",
+     xlab = "abs(pop allele freq diff)")
+
+```
+
+
+### Estimate Parameters
+
+
+Next we estimate the model parameters. These parameters can be useful as an initial measure of relatedness.
+
+```{r, message = FALSE}
+
+# estimate parameters
+my_parameters <- getIBDparameters(ped.genotypes = my_genotypes_2, 
+                                   number.cores = 1)
+
+str(my_parameters)
+                          
+```                      
+
+
+### Detect IBD Segments
+
+
+IBD segments can be detected as follows.
+
+```{r, message = FALSE}
+
+# infer IBD
+my_ibd <- getIBDsegments(ped.genotypes = my_genotypes_2,
+                         parameters = my_parameters, 
+                         model = NULL, 
+                         chromosomes = NULL,
+                         number.cores = 1, 
+                         minimum.snps = 20, 
+                         minimum.length.bp = 50000,
+                         error = 0.001, 
+                         posterior = FALSE)
+str(my_ibd)
+                          
+```    
+
+
+### Plotting Results
+
+
+XIBD comes with several plotting functions to make interpretation of IBD results easier.
+Below we plot detected IBD segments across the genome.
+
+```{r, fig.width = 7, fig.height = 10}
+
+# plot IBD segments
+plotIBDsegments(ibd.segments = my_ibd, 
+                ped.genotypes = my_genotypes_2, 
+                interval = NULL,
+                annotation.genes = NULL, 
+                highlight.genes = NULL, 
+                segment.height = 0.5,
+                number.per.page = NULL, 
+                add.fid.name = FALSE, 
+                add.iid.name = TRUE,
+                add.rug = TRUE, 
+                plot.title = "Inferred IBD Segments", 
+                add.legend = TRUE)
+                          
+```    
+
+We can also look to investigate if some regions of the genome have more IBD than others by
+plotting the proportion of pairs IBD at each SNP.
+
+```{r, fig.width = 7, fig.height = 5}
+
+# get IBD proportions
+my_locus_matrix <- getLocusMatrix(ped.genotypes = my_genotypes_2, 
+                               ibd.segments = my_ibd)
+my_locus_prop <- getLocusProportion(ped.genotypes = my_genotypes_2, 
+                                 locus.matrix = my_locus_matrix, 
+                                 groups = NULL)
+
+# plot IBD proportions
+plotIBDproportions(locus.proportions = my_locus_prop, 
+                   interval = NULL,
+                   annotation.genes = NULL, 
+                   highlight.genes = NULL, 
+                   add.rug = TRUE,
+                   plot.title = NULL)
+                          
+```    
+
+
+### Identity Coefficients
+
+Identity coefficients can be computed given a pedigree as follows.
+
+**NOTE: this function requires all individual IDs to be numeric and hence some manual formatting 
+of the pedigree may be required. Additionally, individuals in the pedigree should be numbered in 
+a way such that every parent precedes his or her children.**
+
+```{r}
+
+# get identity coefficients
+my_pedigree <- data.frame(fid = rep(1,16), 
+                          iid = 1:16, 
+                          pid = c(0,0,0,1,1,0,0,4,6,0,7,0,0,9,11,13),
+                          mid = c(0,0,0,2,2,0,0,3,5,0,8,0,0,10,12,14), 
+                          sex = c(1,2,2,1,2,1,1,2,1,2,1,2,1,2,2,1), 
+                          aff = rep(1,16))
+
+identity_coef <- getIdentityCoef(pedigree = my_pedigree, 
+                                 number.cores = 1)
+
+head(identity_coef)
+
+```
+

@@ -1,0 +1,25 @@
+calculateAlleleFreq     XIBD Calculate Population Allele Frequencies
+example_genotypes       Filtered Genotypes For The Simulated Data
+example_hapmap_topbot   Example Topbot Data
+example_ibd             IBD Segments For The Simulated Data
+example_parameters      IBD Parameter Estimates For Simulated Data
+example_pedmap          Simulated IBD Data for Example
+example_reference_ld    Reference Linkage Disequilibrium Data for
+                        Example
+example_reference_pedmap
+                        Subset of Reference Data for Example
+getColourPaletteMajor   Internal Function
+getColourPaletteMinor   Generate a specified number of shades of a
+                        given colour.
+getConditionSNP         Internal Function
+getGenotypes            XIBD Pre-Analysis Data Processing
+getHaplotypeFreq        Calculates haplotype frequencies between two
+                        SNPs using cpp scripts.
+getIBDparameters        XIBD Parameter Estimation
+getIBDsegments          XIBDs IBD Segment Detection
+getIdentityCoef         Identity Coefficients
+getLocusMatrix          XIBD Binary IBD Matrix
+getLocusProportion      XIBD Proportion of Pairs IBD
+plotIBDproportions      XIBD Locus Proportion Plot
+plotIBDsegments         XIBD Plot IBD Segments
+switchBOTgenotypes      XIBD BOT Genotype Switching

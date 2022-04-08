@@ -1,0 +1,15 @@
+Package: identity
+Version: 0.2-1
+Date: 2010-03-05
+Title: Jacquard Condensed Coefficients of Identity
+Author: Na (Michael) Li <wuolong@gmail.com>
+Maintainer: Na (Michael) Li <wuolong@gmail.com>
+Depends: R (>= 2.0.0)
+Description: Calculate identity coefficients, based on Mark Abney's C
+        code.
+License: GPL (>= 2)
+URL:
+Packaged: 2010-04-14 02:09:54 UTC; nali
+Repository: CRAN
+Date/Publication: 2010-04-14 06:59:24
+Built: R 3.6.3; x86_64-pc-linux-gnu; 2020-06-04 10:14:02 UTC; unix

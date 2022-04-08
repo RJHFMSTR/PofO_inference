@@ -1,0 +1,31 @@
+Package: XIBD
+Type: Package
+Title: Identity-by-Descent Analysis of the Human Genome
+Version: 0.1.0
+Authors@R: person("Lyndal", "Henden", email = "lyndal_henden@hotmail.com", role = c("aut", "cre"))
+Description: Pairwise identity by descent (IBD) inference of human SNP genotype data. XIBD can
+    be applied to both autosomal data and the X chromosome.
+Depends: R (>= 3.2.1)
+License: MIT + file LICENSE
+LazyData: TRUE
+Imports: Rcpp (>= 0.12.5), data.table, doParallel, foreach, ggplot2 (>=
+        2.1.0), identity, grDevices, graphics, utils, stats
+LinkingTo: Rcpp
+RoxygenNote: 6.0.1.9000
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+RemoteType: github
+RemoteHost: api.github.com
+RemoteRepo: XIBD
+RemoteUsername: bahlolab
+RemoteRef: master
+RemoteSha: 07853891c3e2d17966d2d6122dcd3833d999ad1e
+GithubRepo: XIBD
+GithubUsername: bahlolab
+GithubRef: master
+GithubSHA1: 07853891c3e2d17966d2d6122dcd3833d999ad1e
+NeedsCompilation: yes
+Packaged: 2020-06-04 10:15:27 UTC; robin
+Author: Lyndal Henden [aut, cre]
+Maintainer: Lyndal Henden <lyndal_henden@hotmail.com>
+Built: R 3.6.3; x86_64-pc-linux-gnu; 2020-06-04 10:15:27 UTC; unix

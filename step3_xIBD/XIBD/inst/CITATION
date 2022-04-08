@@ -1,0 +1,13 @@
+citHeader("To cite the 'XIBD' package in publications use:")
+
+citEntry(
+  entry="Article",
+  title="XIBD: software for inferring pairwise identity by descent on the X chromosome",
+  journal="Bioinformatics",
+  year="2016",
+  author=personList(as.person("L. Henden"),
+                    as.person("D. Wakeham"),
+                    as.person("M. Bahlo")),
+  textVersion="Henden L, Wakeham D, Bahlo M. (2016) XIBD: software for inferring pairwise
+  identity by descent on the X chromosome. Bioinformatics, 32(15), 2389-2391."
+)
