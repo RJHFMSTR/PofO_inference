@@ -14,7 +14,7 @@ If you use the THORIN in your research work, please cite the following paper:
   &nbsp
   
 #
-## Documentaion
+## Documentation
 
 
 
@@ -66,8 +66,7 @@ The output file stores the copying probability of each group of relatives (```G1
 
 </br>
   &nbsp
-#
-## Installation
+
 
 #
 ## Installation
@@ -108,6 +107,7 @@ Once all paths correctly set up, proceed with the THORIN compilation using ```ma
 
 </br>
   &nbsp
+  
  #
 ## License
 
