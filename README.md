@@ -118,7 +118,8 @@ bash step0_PofO_inference.sh
 bash step1_scaffold.sh
 ```
 
-THORIN software and documentation can be found in ```step4_pofo_inference/THORIN```
+
+This HMM is the main code design for our study. You can access the code, documentation as well as a static version read to run of THORIN at [_step4_pofo_inference/THORIN_](step4_pofo_inference/THORIN)
 
 
 
