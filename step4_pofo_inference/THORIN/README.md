@@ -9,7 +9,14 @@ If you use the THORIN in your research work, please cite the following paper:
 
 [Hofmeister et al., bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
 
+
+</br>
+  &nbsp
+  
+#
 ## Documentaion
+
+
 
 To run an example, use the following command line:
 
@@ -17,9 +24,14 @@ To run an example, use the following command line:
 ./bin/thorin_static -I test/related.chr20.vcf.gz -H test/unrelated.chr20.vcf.gz -G test/Trios.txt -M maps/chr20.b37.gmap.gz -R 20 -O output_test.txt
 ```
 
+
+</br>
+  &nbsp
+  
+  
 Options:
 
-**--help** outputs the list of possible options.
+```--help``` outputs the list of possible options.
 
 ```-I``` specifies the input .vcf file with all samples listed in the group file (-G).
 
@@ -32,6 +44,9 @@ Options:
 ```-O``` specifies the output file.
 
 
+</br>
+  &nbsp
+
 The group file (```-G```) is formatted as follows:
 * the first column specifies the target individual id
 * the second column specifies the first group of relatives. It starts with ```G1=```, referring to ```Group 1```, followed by a ';'-separated list of relatives.
@@ -42,9 +57,14 @@ The output file stores the copying probability of each group of relatives (```G1
 * columns 1-4 specifies the chromosome, position, index of the variant and centimorgan.
 * each additional column specifies the probability of copying a target haplotype from a group of individuals.
 
-* Ex: a column named ```NA20900_G1_0``` stores the probability of copying the haplotype 0 of the individuals NA20900 from the group G1.
-* Ex: a column named ```NA20900_HOLE_1``` stores the probability of copying the haplotype 1 of the individuals NA20900 from the group H (unrelated individuals).
+* Ex: a column named ```NA20900_G1_0``` stores the probability of copying the haplotype ```0``` of the individuals ```NA20900``` from the group ```G1```.
+* Ex: a column named ```NA20900_HOLE_1``` stores the probability of copying the haplotype ```1``` of the individuals ```NA20900``` from the group ```H``` (unrelated individuals).
 
+
+
+</br>
+  &nbsp
+#
 ### Installation
 
 A static version of THORIN ready to run is provided in ```./bin/thorin_static```
@@ -81,7 +101,9 @@ Once all paths correctly set up, proceed with the THORIN compilation using ```ma
 
 
 
-
+</br>
+  &nbsp
+ #
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
