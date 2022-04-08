@@ -20,11 +20,16 @@ To run an example, use the following command line:
 Options:
 
 **--help** outputs the list of possible options.
+
 ```-I``` specifies the input .vcf file with all samples listed in the group file (-G).
-	```-H``` specifies the input .vcf file with a set of fully unrelated samples.
-	```-G``` specifies the group file.
-	```-M``` specifies the genetic maps.
-	```-O``` specifies the output file
+
+```-H``` specifies the input .vcf file with a set of fully unrelated samples.
+	
+```-G``` specifies the group file.
+
+```-M``` specifies the genetic maps.
+
+```-O``` specifies the output file.
 
 
 The group file (```-G```) is formatted as follows:
