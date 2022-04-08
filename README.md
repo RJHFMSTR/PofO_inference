@@ -21,16 +21,15 @@ Starting from the example variant call file (VCF, step1_compute_relatedness/1000
 ```
 cd step1_compute_relatedness/
 bash step0_relatedness.sh
-
 ```
 
 ### Step 2: Duos/Trios identification & surrogate parents group inference
 
 To identify trios and duos we used pairwise kinship and IBS0 estimates up to third degree relative computed using KING and provided as part of the UK biobank study. Following Manichaikul et al. and Bycroft et al., we defined offspring-parent pairs as having a kinship coefficient between 0.1767 and 0.3535 and an IBS0 below 0.0012. We also added the condition of age difference greater than 15 years between parent-offspring pairs. We used the age and sex of the individuals to distinguish parents and offspring. For the trios, we also ensured that the two parents have different sex. We also used pairwise kinship and IBS0 estimates up to the third degree relative to identify sibling pairs (kinship between 0.1767 and 0.3535 and IBS0 above 0.0012), and second- and third-degree relatives’ pairs (kinship below 0.1767)
 
-	* For a given individual, we first identify whether parental genomes are available in the dataset using pre-defined threshold on the kinship and IBS0 estimates. 
-	* We then identify all its close relatives from the 2nd and 3rd degree.
-	* We use the relatedness in-between these 2nd-to-3rd degree relatives to cluster them into groups based on their relatedness using the igraph R package.
+* For a given individual, we first identify whether parental genomes are available in the dataset using pre-defined threshold on the kinship and IBS0 estimates. 
+* We then identify all its close relatives from the 2nd and 3rd degree.
+* We use the relatedness in-between these 2nd-to-3rd degree relatives to cluster them into groups based on their relatedness using the igraph R package.
 
 All these steps can be run with the following command:
 
