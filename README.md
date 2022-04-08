@@ -5,7 +5,7 @@ This pipeline has been used to infer the Parent-of-Origin (PofO) of the UK Bioba
 
 If you use (parts) of this code, please cite Hofmeister et al., bioRxiv 2021 (https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
 
-All the summary statistics are available via our [_PofO Catalog_](www.tinyurl.com/PofOCat). If you use these summary statistics, please cite Hofmeister et al., bioRxiv 2021 (https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
+All the summary statistics are available via our [PofO Catalog](https://www.tinyurl.com/PofOCat). If you use these summary statistics, please cite Hofmeister et al., bioRxiv 2021 (https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
 
 
 For the purpose of the example, parts of this pipeline have been adapted to be run on the 1000GP chromosome 20. The resuts of this example are not usable, these are only to give an example of the input and output files. 
@@ -18,7 +18,7 @@ This step is optional as the relatedness file used for the original manuscript w
 
 Starting from the example variant call file (VCF, step1_compute_relatedness/1000GP.chr20.MAF5.vcf.gz ), this step can be run with the following command:
 	
-```
+```bash
 cd step1_compute_relatedness/
 bash step0_relatedness.sh
 ```
@@ -54,10 +54,10 @@ XIBD software and documentation can be found here: https://github.com/bahlolab/X
 
 ### Step 4: Pofo inference
 
-	* Step 4.1. IBD mapping : We designed a Hidden Markov Model (HMM) to identify IBD sharing between the target haplotypes and a reference panel mixing haplotypes from 2 different sources: from the surrogate parents of the target (labelled as mother or father, see Step3: group assignments) and from unrelated samples. The model uses a forward-backward procedure to compute, for each allele of a target haplotype, the probability of copying the allele from (i) the surrogate mother haplotypes, (ii) the surrogate father haplotypes or (iii) unrelated haplotypes. Here, we used 100 unrelated haplotypes as decoys so that the model is not forced to systematically copy from surrogate parents. When the model copies the target haplotype from a specific surrogate parent at a given locus with high probability, we can therefore infer the PofO at this locus from the parental group the surrogate parent belongs to. When the model copies from unrelated haplotypes, no inference can be made at the locus.
+* Step 4.1. IBD mapping : We designed a Hidden Markov Model (HMM) to identify IBD sharing between the target haplotypes and a reference panel mixing haplotypes from 2 different sources: from the surrogate parents of the target (labelled as mother or father, see Step3: group assignments) and from unrelated samples. The model uses a forward-backward procedure to compute, for each allele of a target haplotype, the probability of copying the allele from (i) the surrogate mother haplotypes, (ii) the surrogate father haplotypes or (iii) unrelated haplotypes. Here, we used 100 unrelated haplotypes as decoys so that the model is not forced to systematically copy from surrogate parents. When the model copies the target haplotype from a specific surrogate parent at a given locus with high probability, we can therefore infer the PofO at this locus from the parental group the surrogate parent belongs to. When the model copies from unrelated haplotypes, no inference can be made at the locus.
 
 
-	* Step 4.2. scaffold construction : We built a haplotype scaffold comprising all alleles for which we know the PofO from IBD sharing with surrogate parents. As described in the original manuscript, we only included in the scaffold IBD tracks longer than 3cM.
+* Step 4.2. scaffold construction : We built a haplotype scaffold comprising all alleles for which we know the PofO from IBD sharing with surrogate parents. As described in the original manuscript, we only included in the scaffold IBD tracks longer than 3cM.
 
 
 All these steps can be run with the following command:
