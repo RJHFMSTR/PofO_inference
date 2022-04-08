@@ -29,9 +29,8 @@ To run an example, use the following command line:
   &nbsp
   
   
-Options:
+Mandatory Options:
 
-```--help``` outputs the list of possible options.
 
 ```-I``` specifies the input .vcf file with all samples listed in the group file (-G).
 
@@ -42,6 +41,10 @@ Options:
 ```-M``` specifies the genetic maps.
 
 ```-O``` specifies the output file.
+
+
+To see the full list of options, run the following command:
+```./bin/thorin_static --help```
 
 
 </br>
