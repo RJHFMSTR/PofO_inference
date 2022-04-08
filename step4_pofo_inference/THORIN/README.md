@@ -72,7 +72,7 @@ The output file stores the copying probability of each group of relatives (```G1
 #
 ## Installation
 
-A static version of THORIN ready to run is provided in ```./bin/thorin_static```
+A static version of THORIN ready to run is provided here: ```./bin/thorin_static```
 
 
 
