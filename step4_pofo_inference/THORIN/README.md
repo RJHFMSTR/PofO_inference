@@ -27,7 +27,7 @@ Options:
 	```-O``` specifies the output file
 
 
-The group file (```-G```) is formatted as follows:
+==The== group file (```-G```) is formatted as follows:
 * the first column specifies the target individual id
 * the second column specifies the first group of relatives. It starts with ```G1=```, referring to ```Group 1```, followed by a ';'-separated list of relatives.
 * the third column, if any, specifies the second group of relatives with ```G2=```.
