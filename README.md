@@ -13,27 +13,10 @@ All the summary statistics are available via our [PofO Catalog](https://www.tiny
 For the purpose of the example, parts of this pipeline have been adapted to be run on the 1000GP chromosome 20. The resuts of this example are not usable, these are only to give an example of the input and output files. 
 
 
-#
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </br>
   &nbsp
-  </br>
-  &nbsp
-
+ 
 
 
 
@@ -61,8 +44,7 @@ KING software and documentation can be found here: https://www.kingrelatedness.c
 
 </br>
   &nbsp
-  </br>
-  &nbsp
+
 
 
 
@@ -91,8 +73,7 @@ IGRAPH software and documentation can be found here: https://igraph.org/
 
 </br>
   &nbsp
-  </br>
-  &nbsp
+
 
 
 
@@ -116,8 +97,7 @@ XIBD software and documentation can be found here: https://github.com/bahlolab/X
 
 </br>
   &nbsp
-  </br>
-  &nbsp
+ 
 
 
 
@@ -147,8 +127,7 @@ bash step1_scaffold.sh
 
 </br>
   &nbsp
-  </br>
-  &nbsp
+
 
 
 
@@ -177,8 +156,7 @@ SHAPEIT4 software and documentation can be found here: https://odelaneau.github.
 
 </br>
   &nbsp
-  </br>
-  &nbsp
+ 
 
 
 
