@@ -15,8 +15,7 @@ For the purpose of the example, parts of this pipeline have been adapted to be r
 
 
 
-\n
-\n
+
 #
 ### Step 1: If not provided, compute the relatedness using the KING software.
 #
