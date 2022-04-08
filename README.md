@@ -13,8 +13,11 @@ All the summary statistics are available via our [PofO Catalog](https://www.tiny
 For the purpose of the example, parts of this pipeline have been adapted to be run on the 1000GP chromosome 20. The resuts of this example are not usable, these are only to give an example of the input and output files. 
 
 
-
-
+   
+  
+    
+      
+      
 
 #
 ### Step 1: If not provided, compute the relatedness using the KING software.
