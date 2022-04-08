@@ -16,7 +16,7 @@ If you use the THORIN in your research work, please cite the following paper: [H
 
 
 
-To run an example, use the following command line:
+To run an example, use the following command line, which should take less than 10 seconds:
 
 ```
 ./bin/thorin_static -I test/related.chr20.vcf.gz -H test/unrelated.chr20.vcf.gz -G test/Trios.txt -M maps/chr20.b37.gmap.gz -R 20 -O output_test.txt
@@ -102,7 +102,7 @@ Edit the makefile at lines 5-6 and 9-11 so that the following variables are corr
 
 
 
-Once all paths correctly set up, proceed with the THORIN compilation using ```make```.
+Once all paths correctly set up, proceed with the THORIN compilation using ```make```, which should a few minutes maximum.
 
 
 
