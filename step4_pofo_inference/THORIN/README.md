@@ -5,7 +5,7 @@
 THORIN is a tool that we use to infer the PofO for alleles shared IBD with surrogate parents. It is a Hidden Markov Model (HMM) specifically design to identify IBD sharing between the target haplotypes and a reference panel mixing haplotypes from 2 different sources: from the surrogate parents of the target (labelled as mother or father) and from unrelated samples. We aimed for such a probabilistic model for its robustness to phasing and genotyping errors compared to approaches based on exact matching such as the positional Burrows–Wheeler transform (PBWT). The model then uses a forward-backward procedure to compute, for each allele of a target haplotype, the probability of copying the allele from (i) the surrogate mother haplotypes, (ii) the surrogate father haplotypes or (iii) unrelated haplotypes. We also use a set of unrelated haplotypes as decoys so that the model is not forced to systematically copy from surrogate parents. When the model copies the target haplotype from a specific surrogate parent at a given locus with high probability, we can therefore infer the PofO at this locus from the parental group the surrogate parent belongs to. When the model copies from unrelated haplotypes, no inference can be made at the locus
 
 
-If you use the THORIN in your research work, please cite the following paper: [Hofmeister et al., bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
+If you use the THORIN in your research work, please cite the following paper: [Hofmeister, R.J. et al. Parent-of-Origin inference for biobanks. Nature Communication 2022. https://doi.org/10.1038/s41467-022-34383-6](https://www.nature.com/articles/s41467-022-34383-6)
 
 
 </br>
