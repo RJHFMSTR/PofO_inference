@@ -5,9 +5,9 @@
 
 This pipeline has been used to infer the Parent-of-Origin (PofO) of the UK Biobank individuals.
 
-If you use (parts) of this code, please cite [Hofmeister et al., bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
+If you use (parts) of this code, please cite [Hofmeister, R.J. et al. Parent-of-Origin inference for biobanks. Nature Communication 2022. https://doi.org/10.1038/s41467-022-34383-6](https://www.nature.com/articles/s41467-022-34383-6)
 
-All the summary statistics are available via our [PofO Catalog](https://www.tinyurl.com/PofOCat). If you use these summary statistics, please cite [Hofmeister et al., bioRxiv 2021](https://www.biorxiv.org/content/10.1101/2021.11.03.467079v1)
+All the summary statistics are available via our [PofO Catalog](https://www.tinyurl.com/PofOCat).
 
 
 For the purpose of the example, parts of this pipeline have been adapted to be run on the 1000GP chromosome 20. The resuts of this example are not usable, these are only to give an example of the input and output files. 
