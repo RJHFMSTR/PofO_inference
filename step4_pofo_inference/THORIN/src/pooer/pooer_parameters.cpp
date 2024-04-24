@@ -63,9 +63,9 @@ void pooer::parse_command_line(vector < string > & args) {
 	if (options.count("log") && !vrb.open_log(options["log"].as < string > ()))
 		vrb.error("Impossible to create log file [" + options["log"].as < string > () +"]");
 
-	vrb.title("POOER");
-	vrb.bullet("Author        : Olivier DELANEAU & Robin Hofmeister, University of Lausanne");
-	vrb.bullet("Contact       : olivier.delaneau@gmail.com, robin@unil.ch");
+	vrb.title("THORIN - Target Haplotype ORigin INference");
+	vrb.bullet("Author        : Olivier DELANEAU & Robin HOFMEISTER, University of Lausanne");
+	vrb.bullet("Contact       : olivier.delaneau@gmail.com, robin.j.hofmeister@gmail.com");
 	vrb.bullet("Version       : 1.1");
 	vrb.bullet("Run date      : " + tac.date());
 }
